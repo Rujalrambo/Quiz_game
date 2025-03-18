@@ -1,4 +1,5 @@
 import 'package:adv_basics/data/questions.dart';
+import 'package:adv_basics/questions_summary.dart';
 import 'package:flutter/material.dart';
 
 class ResultsScreen extends StatelessWidget {
@@ -31,7 +32,7 @@ class ResultsScreen extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.all(40),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Congratulations!',
@@ -42,13 +43,8 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30),
-            Text(
-              'You have completed the quiz!',
-              style: TextStyle(
-                color: const Color.fromARGB(255, 211, 161, 252),
-                fontSize: 24,
-              ),
-            ),
+            QuestionsSummary(getSummaryData()),
+
             SizedBox(height: 30),
             OutlinedButton.icon(
               onPressed: () {
