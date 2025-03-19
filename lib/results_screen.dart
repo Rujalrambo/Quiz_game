@@ -26,6 +26,13 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestions = questions.length;
+    final numCorrectAnswers =
+        summaryData.where((data) {
+          return data['correct_answer'] == data['user_answer'];
+        }).length;
+
     return SizedBox(
       width: double.infinity,
 
@@ -35,15 +42,16 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Congratulations!',
+              'You answered $numCorrectAnswers out of $numTotalQuestions questions correctly!',
               style: TextStyle(
                 color: const Color.fromARGB(255, 211, 161, 252),
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 30),
-            QuestionsSummary(getSummaryData()),
+            QuestionsSummary(summaryData),
 
             SizedBox(height: 30),
             OutlinedButton.icon(
@@ -51,8 +59,8 @@ class ResultsScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
-              icon: Icon(Icons.arrow_right_alt, color: Colors.white),
-              label: const Text('Go Back'),
+              icon: Icon(Icons.refresh, color: Colors.white),
+              label: const Text('Restart Quiz'),
             ),
           ],
         ),
