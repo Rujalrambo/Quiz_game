@@ -2,39 +2,54 @@ import 'package:adv_basics/models/quiz_question.dart';
 
 const questions = [
   QuizQuestion(
-    'What is the largest planet in our solar system, known for its Great Red Spot and many moons?',
+    'What are the main building blocks of Flutter UIs?',
     [
-      'Jupiter, the gas giant',
-      'Saturn, the ringed planet',
-      'Earth, our home planet',
-      'Mars, the red planet',
+      'Widgets',
+      'Components',
+      'Blocks',
+      'Functions',
+    ],
+  ),
+  QuizQuestion('How are Flutter UIs built?', [
+    'By combining widgets in code',
+    'By combining widgets in a visual editor',
+    'By defining widgets in config files',
+    'By using XCode for iOS and Android Studio for Android',
+  ]),
+  QuizQuestion(
+    'What\'s the purpose of a StatefulWidget?',
+    [
+      'Update UI as data changes',
+      'Update data as UI changes',
+      'Ignore data changes',
+      'Render UI that does not depend on data',
     ],
   ),
   QuizQuestion(
-    'What is the smallest continent by land area, known for its unique wildlife and the Great Barrier Reef?',
+    'Which widget should you try to use more often: StatelessWidget or StatefulWidget?',
     [
-      'Australia, the island continent',
-      'Europe, the cultural hub',
-      'Antarctica, the icy wilderness',
-      'South America, the diverse continent',
+      'StatelessWidget',
+      'StatefulWidget',
+      'Both are equally good',
+      'None of the above',
     ],
   ),
   QuizQuestion(
-    'What is the chemical symbol for water, a compound essential for all known forms of life?',
+    'What happens if you change data in a StatelessWidget?',
     [
-      'H2O, dihydrogen monoxide',
-      'O2, molecular oxygen',
-      'CO2, carbon dioxide',
-      'H2, molecular hydrogen',
+      'The UI is not updated',
+      'The UI is updated',
+      'The closest StatefulWidget is updated',
+      'Any nested StatefulWidgets are updated',
     ],
   ),
   QuizQuestion(
-    'Who wrote the famous play "Romeo and Juliet", a tragic love story set in Verona?',
+    'How should you update data inside of StatefulWidgets?',
     [
-      'William Shakespeare, the Bard of Avon',
-      'Charles Dickens, the Victorian novelist',
-      'Mark Twain, the American humorist',
-      'Jane Austen, the English novelist',
+      'By calling setState()',
+      'By calling updateData()',
+      'By calling updateUI()',
+      'By calling updateState()',
     ],
   ),
 ];

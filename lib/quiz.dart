@@ -1,8 +1,9 @@
-import 'package:adv_basics/data/questions.dart';
-import 'package:adv_basics/questions_screen.dart';
-import 'package:adv_basics/results_screen.dart';
 import 'package:flutter/material.dart';
-import 'start_screen.dart';
+
+import 'package:adv_basics/start_screen.dart';
+import 'package:adv_basics/questions_screen.dart';
+import 'package:adv_basics/data/questions.dart';
+import 'package:adv_basics/results_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -17,13 +18,13 @@ class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
 
-  void switchScreen() {
+  void _switchScreen() {
     setState(() {
       activeScreen = 'questions-screen';
     });
   }
 
-  void chooseAnswer(String answer) {
+  void _chooseAnswer(String answer) {
     selectedAnswers.add(answer);
 
     if (selectedAnswers.length == questions.length) {
@@ -42,15 +43,15 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(context) {
-    Widget screenWidget = StartScreen(switchScreen);
+    Widget screenWidget = StartScreen(_switchScreen);
 
     if (activeScreen == 'questions-screen') {
-      screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
+      screenWidget = QuestionsScreen(onSelectAnswer: _chooseAnswer);
     }
 
     if (activeScreen == 'results-screen') {
       screenWidget = ResultsScreen(
-        choosenAnswers: selectedAnswers,
+        chosenAnswers: selectedAnswers,
         onRestart: restartQuiz,
       );
     }
@@ -60,12 +61,12 @@ class _QuizState extends State<Quiz> {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 78, 13, 151),
+                Color.fromARGB(255, 107, 15, 168),
+              ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [
-                Color.fromARGB(255, 59, 2, 70),
-                Color.fromARGB(255, 194, 33, 243),
-              ],
             ),
           ),
           child: screenWidget,
@@ -74,7 +75,3 @@ class _QuizState extends State<Quiz> {
     );
   }
 }
-
-              // activeScreen == 'start-screen'
-              //     ? StartScreen(switchScreen)
-              //     : const QuestionsScreen(), // Ensure StartScreen is imported
