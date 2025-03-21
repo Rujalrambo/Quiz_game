@@ -1,13 +1,19 @@
 import 'package:adv_basics/data/questions.dart';
-import 'package:adv_basics/questions_summary.dart';
+import 'package:adv_basics/questions_summary/questions_summary.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.choosenAnswers});
+  const ResultsScreen({
+    super.key,
+    required this.choosenAnswers,
+    required this.onRestart,
+  });
 
+  final void Function() onRestart;
   final List<String> choosenAnswers;
 
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
 
     for (var i = 0; i < choosenAnswers.length; i++) {
@@ -26,7 +32,6 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
     final numCorrectAnswers =
         summaryData.where((data) {
@@ -35,7 +40,6 @@ class ResultsScreen extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-
       child: Container(
         margin: EdgeInsets.all(40),
         child: Column(
@@ -43,9 +47,9 @@ class ResultsScreen extends StatelessWidget {
           children: [
             Text(
               'You answered $numCorrectAnswers out of $numTotalQuestions questions correctly!',
-              style: TextStyle(
+              style: GoogleFonts.lato(
                 color: const Color.fromARGB(255, 211, 161, 252),
-                fontSize: 30,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
@@ -55,10 +59,8 @@ class ResultsScreen extends StatelessWidget {
 
             SizedBox(height: 30),
             OutlinedButton.icon(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
+              onPressed: onRestart,
+              style: TextButton.styleFrom(foregroundColor: Colors.white),
               icon: Icon(Icons.refresh, color: Colors.white),
               label: const Text('Restart Quiz'),
             ),

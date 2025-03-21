@@ -79,3 +79,4 @@ class QuestionsSummary extends StatelessWidget {
     );
   }
 }
+i learn that for box style we cant apply to a Text so we need to wrap it in separate Container
